@@ -17,6 +17,7 @@ export default defineConfig({
 		outDir: './build'
 	},
 	server: {
-		port: 5173
+		port: 5173,
+		host: true // Expose to local network
 	}
 })
