@@ -177,110 +177,77 @@ export const Home = () => {
 						</table>
 					</div>
 
-					<table className="bg-[#121212] rounded-lg shadow-lg p-6 w-full text-sm text-[#b0b0b0]">
-						<tbody>
-							<tr className="border-b border-white/20">
-								<td className="py-2">Total Blocks</td>
-								<td className="text-right text-white">
-									{' '}
-									{new Intl.NumberFormat('en-US').format(solanaStats?.totalBlocks ?? 0)}
-								</td>
-							</tr>
-							<tr className="border-b border-white/20">
-								<td className="py-2">Average Block Time</td>
-								<td className="text-right text-white">{solanaStats?.averageBlockTime}</td>
-							</tr>
-							<tr className="border-b border-white/20">
-								<td className="py-2">Total Transactions</td>
-								<td className="text-right text-white">
-									{' '}
-									{new Intl.NumberFormat('en-US').format(solanaStats?.totalTransactions ?? 0)}
-								</td>
-							</tr>
-							<tr className="border-b border-white/20">
-								<td className="py-2">Transactions per second (TPS)</td>
-								<td className="text-right text-white">{solanaStats?.tps}</td>
-							</tr>
-							<tr className="border-b border-white/20">
-								<td className="py-2">Estimated Daily Transactions</td>
-								<td className="text-right text-white">{solanaStats?.estimatedDailyTransactions}</td>
-							</tr>
-							<tr className="border-b border-white/20">
-								<td className="py-2">Wallet Addresses</td>
-								<td className="text-right text-white">{solanaStats?.walletAddresses}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+					<div className="bg-[#1e1e1e] h-full rounded-lg shadow-md mb-6 overflow-hidden text-white">
+						<div className="p-6">
+							<h3 className="text-lg font-semibold mb-4">Live Transaction Stats</h3>
 
-				<div className="bg-[#1e1e1e] mt-6 rounded-lg shadow-md mb-6 overflow-hidden text-white">
-					<div className="p-6">
-						<h3 className="text-lg font-semibold mb-4">Live Transaction Stats</h3>
+							<table className="w-full border-collapse mb-4">
+								<tbody>
+									<tr className="border-b border-[#2c2c2c]">
+										<td className="py-4 text-[#b0b0b0]">Transaction count</td>
+										<td className="py-4 text-right text-white font-medium">
+											{new Intl.NumberFormat('en-US').format(solanaStats?.totalTransactions ?? 0)}
+										</td>
+									</tr>
+									<tr className="border-b border-[#2c2c2c]">
+										<td className="py-4 text-[#b0b0b0]">Transactions per second (TPS)</td>
+										<td className="py-4 text-right text-white font-medium">{solanaStats?.tps}</td>
+									</tr>
+								</tbody>
+							</table>
 
-						<table className="w-full border-collapse mb-4">
-							<tbody>
-								<tr className="border-b border-[#2c2c2c]">
-									<td className="py-4 text-[#b0b0b0]">Transaction count</td>
-									<td className="py-4 text-right text-white font-medium">--</td>
-								</tr>
-								<tr className="border-b border-[#2c2c2c]">
-									<td className="py-4 text-[#b0b0b0]">Transactions per second (TPS)</td>
-									<td className="py-4 text-right text-white font-medium">--</td>
-								</tr>
-							</tbody>
-						</table>
-
-						<div className="pt-4">
-							<div className="flex justify-end mb-4 space-x-1">
-								{tpsOptions.map(option => (
-									<button
-										key={option}
-										onClick={() => handleTabClick(option)}
-										className={`px-4 py-1 text-sm border border-[#2c2c2c] transition-all rounded ${
-											activeTab === option
-												? 'bg-[#4d8bf9] text-white'
-												: 'bg-[#2c2c2c] text-[#b0b0b0]'
-										}`}>
-										{option}
-									</button>
-								))}
-							</div>
-
-							<div className="relative h-44">
-								<div className="absolute inset-x-0 top-0 flex justify-between text-[#b0b0b0] text-sm px-2">
-									<div>3</div>
-									<div>2</div>
-									<div>1</div>
-									<div>0</div>
-								</div>
-								<div className="flex items-end gap-0.5 h-full px-2 pt-6" id="chartBars">
-									{chartData.map((value, idx) => (
-										<div
-											key={idx}
-											className="flex-1 bg-[#4d8bf9]"
-											style={{ height: `${value}%` }}
-											title={`TPS: ${value.toFixed(1)}`}
-										/>
+							<div className="pt-4">
+								<div className="flex justify-end mb-4 space-x-1">
+									{tpsOptions.map(option => (
+										<button
+											key={option}
+											onClick={() => handleTabClick(option)}
+											className={`px-4 py-1 text-sm border border-[#2c2c2c] transition-all rounded ${
+												activeTab === option
+													? 'bg-[#4d8bf9] text-white'
+													: 'bg-[#2c2c2c] text-[#b0b0b0]'
+											}`}>
+											{option}
+										</button>
 									))}
 								</div>
-							</div>
 
-							<p className="text-center text-[#b0b0b0] text-sm mt-4">
-								For transaction confirmation time statistics, please visit{' '}
-								<a
-									href="https://validators.app"
-									target="_blank"
-									className="text-[#4d8bf9] underline">
-									validators.app
-								</a>{' '}
-								or{' '}
-								<a
-									href="https://solscan.io/token/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
-									target="_blank"
-									className="text-[#4d8bf9] underline">
-									solscan.io
-								</a>
-							</p>
+								<div className="relative h-44">
+									<div className="absolute inset-x-0 top-0 flex justify-between text-[#b0b0b0] text-sm px-2">
+										<div>3</div>
+										<div>2</div>
+										<div>1</div>
+										<div>0</div>
+									</div>
+									<div className="flex items-end gap-0.5 h-full px-2 pt-6" id="chartBars">
+										{chartData.map((value, idx) => (
+											<div
+												key={idx}
+												className="flex-1 bg-[#4d8bf9]"
+												style={{ height: `${value}%` }}
+												title={`TPS: ${value.toFixed(1)}`}
+											/>
+										))}
+									</div>
+								</div>
+
+								<p className="text-center text-[#b0b0b0] text-sm mt-4">
+									For transaction confirmation time statistics, please visit{' '}
+									<a
+										href="https://validators.app"
+										target="_blank"
+										className="text-[#4d8bf9] underline">
+										validators.app
+									</a>{' '}
+									or{' '}
+									<a
+										href="https://solscan.io/token/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+										target="_blank"
+										className="text-[#4d8bf9] underline">
+										solscan.io
+									</a>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
