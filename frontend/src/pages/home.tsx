@@ -77,7 +77,16 @@ export const Home = () => {
 			</header>
 
 			<main className="max-w-screen-xl mx-auto px-6 py-6">
-				<section className="grid grid-rows-2 grid-cols-4 gap-2 mb-6">
+				<section className="grid grid-rows-2 grid-cols-3 gap-2 mb-6">
+					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
+						<div className="flex flex-col gap-1">
+							<h2 className="text-base text-[#FFFFFFCC] leading-4">Circulating Supply</h2>
+							<div className="text-3xl font-bold flex items-center">
+								{solanaStats?.totalSupply} <span className="text-xl text-[#b0b0b0] ml-2">MODL</span>
+							</div>
+							<div className="text-sm text-[#4d8bf9] mt-2">100% Circulating (Fixed Supply)</div>
+						</div>
+					</article>
 					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<BoxIcon className="size-6 shrink-0" />
 						<div className="flex flex-col">
@@ -96,7 +105,7 @@ export const Home = () => {
 							</h1>
 						</div>
 					</article>
-					<article className="col-span-2 row-span-2 flex items-start bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
+					<article className="flex items-start bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<div className="flex flex-col gap-1">
 							<h2 className="text-base text-[#FFFFFFCC] leading-4">Daily transactions</h2>
 							<h1 className="font-medium text-3xl text-[#FFFFFFCC]">
@@ -123,13 +132,6 @@ export const Home = () => {
 						</div>
 					</article>
 				</section>
-				<div className="bg-[#1e1e1e] rounded-lg shadow-lg p-6 mb-6">
-					<div className="text-[#b0b0b0] font-semibold mb-2">Circulating Supply</div>
-					<div className="text-3xl font-bold flex items-center">
-						{solanaStats?.totalSupply} <span className="text-xl text-[#b0b0b0] ml-2">MODL</span>
-					</div>
-					<div className="text-sm text-[#4d8bf9] mt-2">100% Circulating (Fixed Supply)</div>
-				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div className="bg-[#1e1e1e] rounded-lg shadow-lg p-6">
