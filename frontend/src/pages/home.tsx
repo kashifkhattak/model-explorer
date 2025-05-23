@@ -18,8 +18,16 @@ interface SolanaStat {
 	walletAddresses: number
 }
 
+const generateChartData = (): number[] => {
+	return Array.from({ length: 36 }, () => 40 + Math.random() * 50)
+}
+
 export const Home = () => {
 	const [solanaStats, setSolanaStats] = useState<SolanaStat>()
+	const [activeTab, setActiveTab] = useState<string>('30m')
+	const [chartData, setChartData] = useState<number[]>(generateChartData())
+
+	const tpsOptions = ['30m', '2h', '6h']
 
 	useEffect(() => {
 		const fetchStats = async () => {
@@ -33,6 +41,15 @@ export const Home = () => {
 
 		fetchStats()
 	}, [])
+
+	const regenerateChart = () => {
+		setChartData(generateChartData())
+	}
+
+	const handleTabClick = (tab: string) => {
+		setActiveTab(tab)
+		regenerateChart()
+	}
 
 	const formatWithKPriority = (number: number) => {
 		if (number < 1000) return number.toString()
@@ -194,6 +211,78 @@ export const Home = () => {
 							</tr>
 						</tbody>
 					</table>
+				</div>
+
+				<div className="bg-[#1e1e1e] mt-6 rounded-lg shadow-md mb-6 overflow-hidden text-white">
+					<div className="p-6">
+						<h3 className="text-lg font-semibold mb-4">Live Transaction Stats</h3>
+
+						<table className="w-full border-collapse mb-4">
+							<tbody>
+								<tr className="border-b border-[#2c2c2c]">
+									<td className="py-4 text-[#b0b0b0]">Transaction count</td>
+									<td className="py-4 text-right text-white font-medium">--</td>
+								</tr>
+								<tr className="border-b border-[#2c2c2c]">
+									<td className="py-4 text-[#b0b0b0]">Transactions per second (TPS)</td>
+									<td className="py-4 text-right text-white font-medium">--</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div className="pt-4">
+							<div className="flex justify-end mb-4 space-x-1">
+								{tpsOptions.map(option => (
+									<button
+										key={option}
+										onClick={() => handleTabClick(option)}
+										className={`px-4 py-1 text-sm border border-[#2c2c2c] transition-all rounded ${
+											activeTab === option
+												? 'bg-[#4d8bf9] text-white'
+												: 'bg-[#2c2c2c] text-[#b0b0b0]'
+										}`}>
+										{option}
+									</button>
+								))}
+							</div>
+
+							<div className="relative h-44">
+								<div className="absolute inset-x-0 top-0 flex justify-between text-[#b0b0b0] text-sm px-2">
+									<div>3</div>
+									<div>2</div>
+									<div>1</div>
+									<div>0</div>
+								</div>
+								<div className="flex items-end gap-0.5 h-full px-2 pt-6" id="chartBars">
+									{chartData.map((value, idx) => (
+										<div
+											key={idx}
+											className="flex-1 bg-[#4d8bf9]"
+											style={{ height: `${value}%` }}
+											title={`TPS: ${value.toFixed(1)}`}
+										/>
+									))}
+								</div>
+							</div>
+
+							<p className="text-center text-[#b0b0b0] text-sm mt-4">
+								For transaction confirmation time statistics, please visit{' '}
+								<a
+									href="https://validators.app"
+									target="_blank"
+									className="text-[#4d8bf9] underline">
+									validators.app
+								</a>{' '}
+								or{' '}
+								<a
+									href="https://solscan.io/token/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+									target="_blank"
+									className="text-[#4d8bf9] underline">
+									solscan.io
+								</a>
+							</p>
+						</div>
+					</div>
 				</div>
 			</main>
 		</div>
