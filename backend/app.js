@@ -11,7 +11,7 @@ const TOKEN_MINT = "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump";
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://82.25.93.96:4174",
   })
 );
 

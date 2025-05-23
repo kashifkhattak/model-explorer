@@ -32,7 +32,7 @@ export const Home = () => {
 	useEffect(() => {
 		const fetchStats = async () => {
 			try {
-				const response = await axios.get('http://localhost:3000/api/stats')
+				const response = await axios.get('http://82.25.93.96:3000/api/stats')
 				setSolanaStats(response.data)
 			} catch (err) {
 				console.error(err)
