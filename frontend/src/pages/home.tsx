@@ -1,4 +1,4 @@
-import { ClipboardDocumentIcon } from '@heroicons/react/16/solid'
+import { ClipboardDocumentIcon, MagnifyingGlassIcon } from '@heroicons/react/16/solid'
 import axios from 'axios'
 import { ArrowLeftRightIcon, BoxIcon, ClockIcon, WalletIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -82,10 +82,21 @@ export const Home = () => {
 				<div className="max-w-screen-xl flex items-center justify-between px-6 mx-auto w-full">
 					<div className="flex font-soliden items-center font-bold text-lg">
 						<img src="/logo.png" alt="Modl logo" className="w-7 h-7 mr-2" />
-						Modl{' '}
+						Modl Explorer{' '}
 						<span className="ml-2 font-soliden bg-[#333] text-sm text-[#b0b0b0] px-2 py-0.5 rounded">
-							Explorer [BETA]
+							[BETA]
 						</span>
+					</div>
+					<div className="flex-1 max-w-2xl mx-4">
+						<div className="flex items-center bg-[#2a2a2a] border border-[#2c2c2c] rounded-lg px-4 py-2">
+							<input
+								className="bg-transparent flex-1 outline-none text-sm text-white"
+								placeholder="Search for blocks, accounts, transactions, programs, and tokens"
+							/>
+							<button className="w-7 h-7 p-1 flex items-center justify-center bg-[#4d8bf9] text-white rounded">
+								<MagnifyingGlassIcon />
+							</button>
+						</div>
 					</div>
 				</div>
 			</header>
@@ -97,7 +108,7 @@ export const Home = () => {
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Total blocks</h2>
 							<h1 className="font-medium text-lg text-[#FFFFFFEB]">
-								{new Intl.NumberFormat('en-US').format(solanaStats?.totalBlocks ?? 0)}
+								{new Intl.NumberFormat('en-US').format(8)}
 							</h1>
 						</div>
 					</article>
@@ -106,34 +117,28 @@ export const Home = () => {
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Total transactions</h2>
 							<h1 className="font-medium text-lg text-[#FFFFFFEB]">
-								{new Intl.NumberFormat('en-US').format(solanaStats?.totalTransactions ?? 0)}
+								{new Intl.NumberFormat('en-US').format(243)}
 							</h1>
 						</div>
 					</article>
 					<article className="flex col-span-2 row-span-2 items-start bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<div className="flex flex-col gap-1">
 							<h2 className="text-base text-[#FFFFFFCC] leading-4">Daily transactions</h2>
-							<h1 className="font-medium text-3xl text-[#FFFFFFCC]">
-								{formatWithKPriority(solanaStats?.estimatedDailyTransactions ?? 0)}
-							</h1>
+							<h1 className="font-medium text-3xl text-[#FFFFFFCC]">{formatWithKPriority(24)}</h1>
 						</div>
 					</article>
 					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<WalletIcon className="size-6 shrink-0" />
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Wallet addresses</h2>
-							<h1 className="font-medium text-lg text-[#FFFFFFEB]">
-								{solanaStats?.walletAddresses}
-							</h1>
+							<h1 className="font-medium text-lg text-[#FFFFFFEB]">{8}</h1>
 						</div>
 					</article>
 					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<ClockIcon className="size-6 shrink-0" />
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Average block time</h2>
-							<h1 className="font-medium text-lg text-[#FFFFFFEB]">
-								{solanaStats?.averageBlockTime}s
-							</h1>
+							<h1 className="font-medium text-lg text-[#FFFFFFEB]">400ms</h1>
 						</div>
 					</article>
 				</section>
