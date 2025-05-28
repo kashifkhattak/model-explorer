@@ -18,14 +18,32 @@ interface SolanaStat {
 	walletAddresses: number
 }
 
-const generateChartData = (): number[] => {
-	return Array.from({ length: 36 }, () => 40 + Math.random() * 50)
+const generateChartData = (tab: string): number[] => {
+	switch (tab) {
+		case '30m':
+			return [
+				60, 62, 65, 64, 63, 61, 60, 58, 59, 61, 63, 62, 60, 58, 56, 55, 57, 59, 61, 60, 59, 58, 57,
+				55, 54, 56, 58, 59, 60, 62, 64, 63, 62, 60, 59, 58,
+			]
+		case '2h':
+			return [
+				55, 57, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 52, 54, 56, 58, 60, 59, 57, 55, 53, 51, 50,
+				52, 54, 56, 58, 60, 62, 64, 63, 61, 60, 58, 56, 54,
+			]
+		case '6h':
+			return [
+				50, 48, 47, 45, 46, 48, 50, 52, 54, 53, 52, 51, 49, 47, 45, 43, 42, 40, 41, 43, 45, 47, 49,
+				50, 51, 53, 55, 57, 56, 54, 52, 50, 48, 46, 45, 43,
+			]
+		default:
+			return Array(36).fill(0)
+	}
 }
 
 export const Home = () => {
 	const [solanaStats, setSolanaStats] = useState<SolanaStat>()
 	const [activeTab, setActiveTab] = useState<string>('30m')
-	const [chartData, setChartData] = useState<number[]>(generateChartData())
+	const [chartData, setChartData] = useState<number[]>(generateChartData('30m'))
 
 	const tpsOptions = ['30m', '2h', '6h']
 
@@ -42,13 +60,9 @@ export const Home = () => {
 		fetchStats()
 	}, [])
 
-	const regenerateChart = () => {
-		setChartData(generateChartData())
-	}
-
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab)
-		regenerateChart()
+		setChartData(generateChartData(tab))
 	}
 
 	const formatWithKPriority = (number: number) => {
@@ -66,10 +80,10 @@ export const Home = () => {
 		<div className="text-white bg-[#121212] min-h-screen font-sans">
 			<header className="sticky top-0 z-50 h-16 flex items-center bg-[#1e1e1e] border-b border-[#2c2c2c] px-6">
 				<div className="max-w-screen-xl flex items-center justify-between px-6 mx-auto w-full">
-					<div className="flex items-center font-bold text-lg">
+					<div className="flex font-soliden items-center font-bold text-lg">
 						<img src="/logo.png" alt="Modl logo" className="w-7 h-7 mr-2" />
 						Modl{' '}
-						<span className="ml-2 bg-[#333] text-sm text-[#b0b0b0] px-2 py-0.5 rounded">
+						<span className="ml-2 font-soliden bg-[#333] text-sm text-[#b0b0b0] px-2 py-0.5 rounded">
 							Explorer [BETA]
 						</span>
 					</div>
@@ -77,16 +91,7 @@ export const Home = () => {
 			</header>
 
 			<main className="max-w-screen-xl mx-auto px-6 py-6">
-				<section className="grid grid-rows-2 grid-cols-3 gap-2 mb-6">
-					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
-						<div className="flex flex-col gap-1">
-							<h2 className="text-base text-[#FFFFFFCC] leading-4">Circulating Supply</h2>
-							<div className="text-3xl font-bold flex items-center">
-								{solanaStats?.totalSupply} <span className="text-xl text-[#b0b0b0] ml-2">MODL</span>
-							</div>
-							<div className="text-sm text-[#4d8bf9] mt-2">100% Circulating (Fixed Supply)</div>
-						</div>
-					</article>
+				<section className="grid grid-rows-2 grid-cols-4 gap-2 mb-6">
 					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<BoxIcon className="size-6 shrink-0" />
 						<div className="flex flex-col">
@@ -105,7 +110,7 @@ export const Home = () => {
 							</h1>
 						</div>
 					</article>
-					<article className="flex items-start bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
+					<article className="flex col-span-2 row-span-2 items-start bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<div className="flex flex-col gap-1">
 							<h2 className="text-base text-[#FFFFFFCC] leading-4">Daily transactions</h2>
 							<h1 className="font-medium text-3xl text-[#FFFFFFCC]">
