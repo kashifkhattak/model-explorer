@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 NODE_ENV=development vite",
+    "start": "NODE_ENV=development vite",
     "start-secure": "NODE_ENV=development && HTTPS=true vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
