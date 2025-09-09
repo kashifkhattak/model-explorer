@@ -108,7 +108,7 @@ export const Home = () => {
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Total blocks</h2>
 							<h1 className="font-medium text-lg text-[#FFFFFFEB]">
-								{new Intl.NumberFormat('en-US').format(8)}
+								{new Intl.NumberFormat('en-US').format(0)}
 							</h1>
 						</div>
 					</article>
@@ -117,28 +117,28 @@ export const Home = () => {
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Total transactions</h2>
 							<h1 className="font-medium text-lg text-[#FFFFFFEB]">
-								{new Intl.NumberFormat('en-US').format(243)}
+								{new Intl.NumberFormat('en-US').format(0)}
 							</h1>
 						</div>
 					</article>
 					<article className="flex col-span-2 row-span-2 items-start bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<div className="flex flex-col gap-1">
 							<h2 className="text-base text-[#FFFFFFCC] leading-4">Daily transactions</h2>
-							<h1 className="font-medium text-3xl text-[#FFFFFFCC]">{formatWithKPriority(24)}</h1>
+							<h1 className="font-medium text-3xl text-[#FFFFFFCC]">{formatWithKPriority(0)}</h1>
 						</div>
 					</article>
 					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<WalletIcon className="size-6 shrink-0" />
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Wallet addresses</h2>
-							<h1 className="font-medium text-lg text-[#FFFFFFEB]">{8}</h1>
+							<h1 className="font-medium text-lg text-[#FFFFFFEB]">{0}</h1>
 						</div>
 					</article>
 					<article className="flex items-center bg-[#1e1e1e] rounded-lg p-3 space-between gap-2">
 						<ClockIcon className="size-6 shrink-0" />
 						<div className="flex flex-col">
 							<h2 className="text-sm text-[#A0AEC0] leading-4">Average block time</h2>
-							<h1 className="font-medium text-lg text-[#FFFFFFEB]">400ms</h1>
+							<h1 className="font-medium text-lg text-[#FFFFFFEB]">0ms</h1>
 						</div>
 					</article>
 				</section>
