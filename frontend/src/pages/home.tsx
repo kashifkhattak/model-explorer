@@ -242,23 +242,6 @@ export const Home = () => {
 										))}
 									</div>
 								</div>
-
-								<p className="text-center text-[#b0b0b0] text-sm mt-4">
-									For transaction confirmation time statistics, please visit{' '}
-									<a
-										href="https://validators.app"
-										target="_blank"
-										className="text-[#4d8bf9] underline">
-										validators.app
-									</a>{' '}
-									or{' '}
-									<a
-										href="https://solscan.io/token/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
-										target="_blank"
-										className="text-[#4d8bf9] underline">
-										solscan.io
-									</a>
-								</p>
 							</div>
 						</div>
 					</div>
