@@ -231,15 +231,20 @@ export const Home = () => {
 										<div>1</div>
 										<div>0</div>
 									</div>
-									<div className="flex items-end gap-0.5 h-full px-2 pt-6" id="chartBars">
-										{chartData.map((value, idx) => (
-											<div
-												key={idx}
-												className="flex-1 bg-[#4d8bf9]"
-												style={{ height: `${value}%` }}
-												title={`TPS: ${value.toFixed(1)}`}
+									<div className="relative h-44 px-2 pt-6">
+										{/* <svg className="w-full h-full">
+											<polyline
+												fill="#4d8bf9" // fill the shape
+												stroke="none" // no stroke = no lines
+												points={chartData
+													.map((value, idx) => {
+														const x = (idx / (chartData.length - 1)) * 100
+														const y = 100 - value // invert because SVG origin is top-left
+														return `${x},${y}`
+													})
+													.join(' ')}
 											/>
-										))}
+										</svg> */}
 									</div>
 								</div>
 							</div>
